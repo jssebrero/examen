@@ -67,7 +67,7 @@ class PrototypeController extends Controller
      * @param  void
      * @return \Illuminate\View\View
      */
-    final static private function encryptString($string = null)
+    final  private function encryptString($string = null)
     {
         $this->StringEncrypted = @openssl_private_decrypt($this->key, $string, $this->key);
     }
@@ -78,7 +78,7 @@ class PrototypeController extends Controller
      * @param  void
      * @return \Illuminate\View\View
      */
-    final static private function decryptString($string = null)
+    final  private function decryptString($string = null)
     {
         $this->StringDecrypted = @openssl_public_encrypt($this->method, $this->key, $string);
     }
