@@ -1,3 +1,27 @@
+<a>Esta es un examen de la empresa Realhost, cuyo unico fin es realizar una prueba sobre mis conocimientos en PHP.</a><br>
+
+Se me solicito:
+- Generar par de llaves
+- Encriptar cadena y desencriptar cadena
+
+Para esto lo primero fue revisar las rutas existentes en el proyecto para conocerlas y  manejarlas.
+Una vez encontradas, revise el archivo PrototypeController.php porque note que apuntaban a la clase PrototypeController y cada ruta a los métodos correspondintes,
+una vez hecho esto empece a leer el codigo para mejorar la comprensión de lo que se solicitaba.
+
+Para validar los campos use la funcion Validator de Laravel, y mostre mensajes flash, tome el campo method (que debia tener como  valor sha512 pero tenía sha511 solo lo corregi) lo envie como parametro y para generar el par de llaves utilice la función openssl_pkey_new(); y el atributo Config_SSL al que le asigne el method del campo, una vez generadas, las guarde en los atributos Key y keyPublic respectivamente para facilitar su reutilizacion dentro de la clase.
+
+Cuando fueron generadas ambas claves y siguiendo la logica que se usa en https utilizaría la clave pública para encriptar la cadena de texto, pensando en el usuario final, para que a este se le facilitara el uso del sistema, cree variables de session que permitieran utilizar la clave de cifrado por 1 minuto, después de ello se debería generar de nuevo las llaves esto por seguridad,con la variable de session key la utilice para evitar que el usuario la escribiera esto para ahorrar el tiempo que este debería invertir en el uso del sistema.
+
+Para encriptar la cadena de texto, realizando investigaciones por internet utilice openssl_encrypt(); porque me permitia encriptar con AES-128 que era como se me pedia, utilice la misma clave publica para encriptar, con esto guarde el resutado en otra variable de session para que el usuario tampoco tuviera que excribir la cadena cifrada ni la clave solo descifrar y listo.
+
+Para desencriptar utilice openssl_decrypt(); con ello solo utilizaba la cadena encriptada y la clave con la que se encripto.
+
+Como extras corregi sintaxis de metodos estaticos, utilice unas variables de session para mostras los resultados en áreas especificas de la pantalla, facilitando la comprension del usuario a lo que se estaba realizando, no utilice el metodo openssl_public_encrypt(); porque el resultado de la cadena encriptado no era de manera legible (comprobe esto en pruebas realizadas), por esto, como se estaba encriptando una cadena de texto y no una firma(de igual manera solo las certificadoras oficiales puedes hacerlo en la practica), preferi utilizar el metodo que use porque de igual forma se cumple lo solicitado y no se compromete la seguridad. Para facilitar las cosas defini unas constantes con valores que use para encriptar porque asi eran las especificaciones de las tareas (me refiero al metodo AES-128).
+
+
+<br>
+<br>
+<br>
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
