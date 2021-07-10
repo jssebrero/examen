@@ -1,4 +1,4 @@
-<a>Esta es un examen de la empresa Realhost, cuyo unico fin es realizar una prueba sobre mis conocimientos en PHP.</a><br>
+<a>Este es un examen de la empresa Realhost, cuyo unico fin es realizar una prueba sobre mis conocimientos en PHP.</a><br>
 
 Se me solicito:
 - Generar par de llaves
